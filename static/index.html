@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Keras Number OCR</title>
+    <link href="https://fonts.googleapis.com/css?family=Oswald|Roboto|Happy+Monkey&display=swap" rel="stylesheet">
+    <style>
+      body {
+       background-image: #dedede;
+       margin: 50px;
+       background-position: fixed;
+       font-family: 'Happy Monkey';
+      }
+
+      .headline {
+        font-size: 40px;
+      }
+
+      button {
+       width: 200px;
+       height: 60px;
+       font-size: 22px;
+       background-color: #fff;
+       font-family: 'Oswald', sans-serif;      }
+
+      canvas {
+       border: 5px solid #000000;
+       height: 400px;
+       width: 400px;
+      }
+
+      textarea {
+       border: 5px solid #000000;
+       font-family: monospace;
+       font-size: 12px;
+       width: auto;
+       height: auto;
+      }
+
+      span#answer {
+        font-weight: bold;
+        color: red;
+        font-size: 26px;
+      }
+
+    </style>
+  </head>
+  <body>
+
+    <div class="headline" align="center">Number OCR</div>
+
+    <p>&nbsp;</p>
+
+    <div align="center" style="border: 0px #000 solid; padding-bottom: 20px;">
+      <div align="center" style="width: 50%; float: left;">
+        <b>Draw Here:</b>
+        <canvas id="canvas" height="400px"></canvas>
+      </div>
+      <div align="center" style="width: 50%;">
+        <b>What does the computer see?</b><br/>
+        <textarea id="debug" rows="28" cols="28"></textarea>
+      </div>
+    </div>
+
+    <p id="result" style="display: none;" align="center">The computer thinks the number you entered is: <span id="answer"></span>.</p>
+
+    <div align="center">
+      <button id="detect">Detect</button> <button id="clear">Clear</button>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/3.4.0/fabric.min.js" crossorigin></script>
+    <script>
+
+      function send(blob) {
+        var ajax = new XMLHttpRequest();
+        ajax.open("POST", "/predict", false);
+        ajax.onreadystatechange = function() {
+          processResponse(ajax);
+        }
+
+        var formData = new FormData();
+        formData.append("image", blob);
+        ajax.send(formData);
+      }
+
+      function processResponse(ajax) {
+        if(ajax.readyState === 4 && ajax.status === 200) {
+          var r = JSON.parse(ajax.responseText);
+          document.getElementById('answer').innerHTML = r.answer;
+          document.getElementById('debug').innerHTML = atob(r.debug);
+          document.getElementById('result').style.display = 'block';
+        }
+      }
+
+      (function() {
+
+        var canvas = this.__canvas = new fabric.Canvas('canvas', {
+          isDrawingMode: true,
+          freeDrawingBrush: new fabric['PencilBrush'](),
+        });
+        canvas.freeDrawingBrush.color = "#6e6e6e";
+        canvas.freeDrawingBrush.width = 30;
+
+        document.getElementById('detect').onclick = function() {
+          document.getElementById('canvas').toBlob(send, 'image/jpeg', 1); //toDataURL());
+        }
+
+        document.getElementById('clear').onclick = function() {
+          canvas.clear()
+        };
+
+      })();
+    </script>
+  </body>
+</html>
