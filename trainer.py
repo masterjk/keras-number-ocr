@@ -20,7 +20,7 @@ train_labels = tf.keras.utils.to_categorical(train_labels, 10)
 test_labels = tf.keras.utils.to_categorical(test_labels, 10)
 
 # Step 5: Train it
-model.fit(train_images, train_labels, batch_size=128, epochs=1, verbose=1)
+model.fit(train_images, train_labels, batch_size=128, epochs=5, verbose=1)
 
 # Step 6: Perform the evaluation
 test_loss, test_acc = model.evaluate(test_images, test_labels)

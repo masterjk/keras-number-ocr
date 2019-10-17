@@ -8,7 +8,7 @@ build:
 	@docker build -t "${DOCKER_IMAGE}" .
 
 publish:
-	@docker push ${IMAGE_NAME}
+	@docker push ${DOCKER_IMAGE}
 
 run-local: stop-local
 	@docker run -p 5000:5000 --name ${NAME} --detach ${DOCKER_IMAGE}
