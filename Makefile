@@ -1,6 +1,6 @@
 NAME="keras-number-ocr"
 
-DOCKER_IMAGE="hub.docker.com/josephkiok/keras-number-ocr:latest"
+DOCKER_IMAGE="josephkiok/keras-number-ocr:latest"
 
 default: build
 

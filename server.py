@@ -26,17 +26,12 @@ def debug(arr):
 
 @App.route("/predict", methods=["POST", "GET"])
 def predict():
-    print("!!!!-0", flask.request)
     if flask.request.files.get("image"):
 
         response = {}
 
-        print("!!!!-1")
-
         # Read image from HTTP request
         buf = flask.request.files["image"].read()
-
-        print("!!!!-2", buf)
 
         # Convert to image object
         image = PIL.Image.open(io.BytesIO(buf))
