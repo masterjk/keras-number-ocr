@@ -46,6 +46,10 @@
         vertical-align: top;
       }
 
+      div.graph {
+        background-color: green;
+      }
+
     </style>
   </head>
   <body>
@@ -56,10 +60,65 @@
       <tr>
         <td align="center"><b>Draw a Single Digit Here:</b></td>
         <td align="center"><b>What the Computer See:</b></td>
+        <td align="center"><b>Result Probabilities:</b></td>
       </tr>
       <tr>
         <td align="center"><canvas id="canvas" width="300" height="300" ></canvas></td>
         <td align="center"><textarea id="debug" rows="28" cols="28"></textarea></td>
+        <td align="center">
+          <table width="100%" border="1" cellpadding="5" cellspacing="0">
+            <tr>
+              <td align="center"><b>0</b></td>
+              <td width="100"><div id="graph0" class="graph" style="width: 0%;">&nbsp;</div></td>
+              <td align="center" id="0"></td>
+            </tr>
+            <tr>
+              <td align="center"><b>1</b></td>
+              <td><div id="graph1" class="graph" style="width: 0%;">&nbsp;</div></td>
+              <td align="center" id="1"></td>
+            </tr>
+            <tr>
+              <td align="center"><b>2</b></td>
+              <td><div id="graph2" class="graph" style="width: 0%;">&nbsp;</div></td>
+              <td align="center" id="2"></td>
+            </tr>
+            <tr>
+              <td align="center"><b>3</b></td>
+              <td><div id="graph3" class="graph" style="width: 0%;">&nbsp;</div></td>
+              <td align="center" id="3"></td>
+            </tr>
+            <tr>
+              <td align="center"><b>4</b></td>
+              <td><div id="graph4" class="graph" style="width: 0%;">&nbsp;</div></td>
+              <td align="center" id="4"></td>
+            </tr>
+            <tr>
+              <td align="center"><b>5</b></td>
+              <td><div id="graph5" class="graph" style="width: 0%;">&nbsp;</div></td>
+              <td align="center" id="5"></td>
+            </tr>
+            <tr>
+              <td align="center"><b>6</b></td>
+              <td><div id="graph6" class="graph" style="width: 0%;">&nbsp;</div></td>
+              <td align="center" id="6"></td>
+            </tr>
+            <tr>
+              <td align="center"><b>7</b></td>
+              <td><div id="graph7" class="graph" style="width: 0%;">&nbsp;</div></td>
+              <td align="center" id="7"></td>
+            </tr>
+            <tr>
+              <td align="center"><b>8</b></td>
+              <td><div id="graph8" class="graph" style="width: 0%;">&nbsp;</div></td>
+              <td align="center" id="8"></td>
+            </tr>
+            <tr>
+              <td align="center"><b>9</b></td>
+              <td><div id="graph9" class="graph" style="width: 0%;">&nbsp;</div></td>
+              <td align="center" id="9"></td>
+            </tr>
+          </table>
+        </td>
       </tr>
     </table>
 
@@ -95,6 +154,12 @@
           document.getElementById('answer').innerHTML = r.answer;
           document.getElementById('debug').innerHTML = atob(r.debug);
           document.getElementById('result').style.display = 'block';
+
+          for (i=0; i<=9; i++) {
+            var value = (r[i] * 100).toFixed(2);
+            document.getElementById('graph' + i).style.width = value + "%";
+            document.getElementById(i).innerHTML = value + "%";
+          }
         }
       }
 
@@ -115,6 +180,13 @@
           canvas.clear();
           document.getElementById('result').style.display = 'none';
           document.getElementById('debug').innerHTML = '';
+
+          for (i=0; i<=9; i++) {
+            var value = 0;
+            document.getElementById('graph' + i).style.width = value + "%";
+            document.getElementById(i).innerHTML = value + "%";
+          }
+
         };
 
       })();

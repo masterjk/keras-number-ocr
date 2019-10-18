@@ -61,6 +61,12 @@ def predict():
         debugString = debug(nparr)
         debugBuf = bytearray(debugString.encode("utf-8"))
         response["debug"] = base64.b64encode(debugBuf).decode("utf-8")
+
+        i = 0
+        for probability in predictions[0]:
+            response[str(i)] = str(probability)
+            i += 1
+
         return flask.jsonify(response)
     else:
         flask.abort(404)
