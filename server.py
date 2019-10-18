@@ -43,8 +43,13 @@ def predict():
         # Convert image to a numpy array
         nparr = numpy.array(image)
 
+        # Chapter 2: https://my.safaribooksonline.com/book/programming/python/9781617294433/chapter-2dot-before-we-begin-the-mathematical-building-blocks-of-neural-networks/ch02lev1sec5_html
         # Reshape numpy array from 28x28x1 (28x28 by 0-255 color) to a 1-dimensional array
-        nparr_reshaped = nparr.reshape(1, 784)
+        # nparr_reshaped = nparr.reshape(1, 784)
+
+        # Chapter 5: https://my.safaribooksonline.com/9781617294433/ch02lev1sec5_html
+        # Reshape numpy array from 28x28x1 (28x28 by 0-255 color) to a 1-dimensional array
+        nparr_reshaped = nparr.reshape(1, 28, 28, 1)
 
         # Convert from 0-255, to 0-1
         nparr_reshaped = nparr_reshaped.astype('float32') / 255
