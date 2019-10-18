@@ -105,10 +105,14 @@
         }
 
         document.getElementById('clear').onclick = function() {
-          canvas.clear()
+          canvas.clear();
+          document.getElementById('result').style.display = 'none';
+          document.getElementById('debug').innerHTML = '';
         };
 
       })();
     </script>
+
+    <p><div align="center"><a href="https://github.com/masterjk/keras-number-ocr" target="_blank">Github</a></div></p>
   </body>
 </html>
