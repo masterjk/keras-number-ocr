@@ -5,6 +5,16 @@ Prototype to get end to end components working for a number recognition software
 
 Training portion of the software is very rudimentary at this point and requires a lot of further tuning.
 
+## Architecture
+
+![Architecture](./static/Keras-Number-OCR.png)
+
+
+## Screenshot
+
+![Screenshot](./static/screenshot.png)
+
+
 # Usage
 
 ## Docker
