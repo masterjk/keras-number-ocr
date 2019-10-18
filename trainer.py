@@ -3,8 +3,7 @@ import tensorflow as tf
 # Step 1: Import Data
 (train_images, train_labels), (test_images, test_labels) = tf.keras.datasets.mnist.load_data()
 
-# Step 2a: Build Network
-# Chapter 2: https://my.safaribooksonline.com/book/programming/python/9781617294433/chapter-2dot-before-we-begin-the-mathematical-building-blocks-of-neural-networks/ch02lev1sec5_html
+# Step 2a: Build Network (Chapter 2 Implementation)
 # model = tf.keras.models.Sequential()
 # model.add(tf.keras.layers.Dense(512, activation='relu', input_shape=(28 * 28,)))
 # model.add(tf.keras.layers.Dense(10, activation='softmax'))
@@ -17,8 +16,7 @@ import tensorflow as tf
 # test_labels = tf.keras.utils.to_categorical(test_labels, 10)
 # model.fit(train_images, train_labels, epochs=5, batch_size=128)
 
-# Step 2b: Build Network
-# Chapter 5: https://my.safaribooksonline.com/9781617294433/ch02lev1sec5_html
+# Step 2b: Build Network (Chapter 5 Implementation)
 model = tf.keras.models.Sequential()
 model.add(tf.keras.layers.Conv2D(32, (3, 3), activation='relu', input_shape=(28, 28, 1)))
 model.add(tf.keras.layers.MaxPooling2D((2, 2)))

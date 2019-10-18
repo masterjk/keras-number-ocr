@@ -4,9 +4,10 @@
     <title>Keras Number OCR</title>
     <link href="https://fonts.googleapis.com/css?family=Oswald|Roboto|Happy+Monkey&display=swap" rel="stylesheet">
     <style>
+
       body {
        background-image: #dedede;
-       margin: 50px;
+       /* margin: 50px; */
        background-position: fixed;
        font-family: 'Happy Monkey';
       }
@@ -25,16 +26,14 @@
 
       canvas {
        border: 5px solid #000000;
-       height: 300px;
-       width: 300px;
       }
 
       textarea {
        border: 5px solid #000000;
        font-family: monospace;
        font-size: 12px;
-       width: auto;
-       height: auto;
+       width: 300px;
+       height: 300px;
       }
 
       span#answer {
@@ -43,30 +42,37 @@
         font-size: 26px;
       }
 
+      td {
+        vertical-align: top;
+      }
+
     </style>
   </head>
   <body>
 
     <div class="headline" align="center">Number OCR</div>
 
-    <p>&nbsp;</p>
-
-    <div align="center" style="border: 0px #000 solid; padding-bottom: 20px;">
-      <div align="center" style="width: 50%; float: left;">
-        <b>Draw a Single Digit Here:</b>
-        <canvas id="canvas" height="400px"></canvas>
-      </div>
-      <div align="center" style="width: 50%;">
-        <b>What the Computer See:</b><br/>
-        <textarea id="debug" rows="28" cols="28"></textarea>
-      </div>
-    </div>
+    <table border="0" width="100%" cellpadding="5">
+      <tr>
+        <td align="center"><b>Draw a Single Digit Here:</b></td>
+        <td align="center"><b>What the Computer See:</b></td>
+      </tr>
+      <tr>
+        <td align="center"><canvas id="canvas" width="300" height="300" ></canvas></td>
+        <td align="center"><textarea id="debug" rows="28" cols="28"></textarea></td>
+      </tr>
+    </table>
 
     <div align="center">
       <button id="detect">Detect</button> <button id="clear">Clear</button>
     </div>
 
     <p id="result" style="display: none;" align="center">The computer thinks the number you entered is: <span id="answer"></span>.</p>
+
+    <p>&nbsp;</p>
+
+    <p><div align="center"><a href="https://github.com/masterjk/keras-number-ocr" target="_blank">Github Source</a></div></p>
+    <p><div style="border: 1px #000 solid;"><img src="Keras-Number-OCR.png" width="100%" /></div></p>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/3.4.0/fabric.min.js" crossorigin></script>
     <script>
@@ -99,7 +105,7 @@
           freeDrawingBrush: new fabric['PencilBrush'](),
         });
         canvas.freeDrawingBrush.color = "#6e6e6e";
-        canvas.freeDrawingBrush.width = 30;
+        canvas.freeDrawingBrush.width = 10;
 
         document.getElementById('detect').onclick = function() {
           document.getElementById('canvas').toBlob(send, 'image/jpeg', 1); //toDataURL());
@@ -113,7 +119,5 @@
 
       })();
     </script>
-
-    <p><div align="center"><a href="https://github.com/masterjk/keras-number-ocr" target="_blank">Github</a></div></p>
   </body>
 </html>
